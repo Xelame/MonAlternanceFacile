@@ -1,5 +1,4 @@
 import { Hono } from 'hono'
-import { logger } from 'hono/logger'
 
 import userRouter from './routes/user'
 
@@ -9,9 +8,6 @@ const app = new Hono()
 
 // const secret = 'SL7k35jP%x*GAG'
 // const token = await sign(payloadin, secret)
-
-// Logger
-app.use('*', logger())
 
 
 // HTTP Methods

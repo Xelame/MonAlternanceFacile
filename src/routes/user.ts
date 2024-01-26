@@ -5,7 +5,7 @@ const user = new Hono()
 
 user.get('/:id', (c) => c.json({id : c.req.param('id')}))
 
-user.post('/create', register)
+user.post('/register', register)
 
 user.post('/login', login)
 
