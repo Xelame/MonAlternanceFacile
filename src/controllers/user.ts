@@ -1,4 +1,9 @@
 import { createToken } from "../middleware/auth";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+
 
 // export const authentification = async (req, res, next) => {
 //   const token = req.headers.authorization;
@@ -17,12 +22,28 @@ import { createToken } from "../middleware/auth";
 //   next();
 // };
 
+export const ListUser = async (c: any) => {
+    try {
+        // count the number of users
+        const count = await prisma.user.count();
+        return c.json({message : `There are ${count} users in the database.`});
+    }
+    catch (error: any) {
+        return c.json({ message: error.message})
+    }
+}
 
 export const register = async (c: any) => {
     const { email, password } = await c.req.json();
     const hash = await Bun.password.hash(password);
+    console.log("Slaut")
     try {
-        throw new Error("User already exists")
+        return await prisma.user.create({
+            data: {
+              email: email,
+              password : password
+            },
+        });          
     }
     catch (error: any) {
         return c.json({ message: error.message })

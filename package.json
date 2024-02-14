@@ -3,13 +3,14 @@
     "dev": "bun --watch run src/index.ts"
   },
   "dependencies": {
+    "@hono/node-server": "^1.7.0",
+    "@prisma/client": "^5.9.1",
     "dotenv": "^16.4.1",
-    "drizzle-orm": "^0.29.3",
     "hono": "^3.12.6",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
     "@types/bun": "^1.0.0",
-    "drizzle-kit": "^0.20.13"
+    "prisma": "^5.9.1"
   }
 }
