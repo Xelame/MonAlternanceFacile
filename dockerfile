@@ -1,10 +1,17 @@
-FROM oven/bun:alpine
+FROM oven/bun:latest
 
-WORKDIR /usr/app
+WORKDIR /app
 
-COPY package.json ./
-COPY src ./src
+RUN apk update && apk add --update nodejs npm
+
+COPY package.json package.json
+
+COPY prisma ./prisma/
 
 RUN bun install
+
+RUN bunx prisma generate 
+
+COPY src ./src
 
 ENTRYPOINT [ "bun", "run", "dev" ]

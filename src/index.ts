@@ -1,10 +1,11 @@
-// import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { logger } from 'hono/logger'
 
 import user from './routes/user'
 
-
 const app = new Hono()
+
+app.use('*', logger())
 
 // const secret = 'SL7k35jP%x*GAG'
 // const token = await sign(payloadin, secret)
@@ -16,7 +17,7 @@ app.post('/', (c) => c.text('POST /'))
 app.put('/', (c) => c.text('PUT /'))
 app.delete('/', (c) => c.text('DELETE /'))
 
-app.route('/user/', user);
+app.route('/user', user);
 
 
 //app.notFound((c) => {

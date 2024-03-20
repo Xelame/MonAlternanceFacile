@@ -1,9 +1,6 @@
-import { createToken } from "../middleware/auth";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
-
 
 // export const authentification = async (req, res, next) => {
 //   const token = req.headers.authorization;
@@ -36,7 +33,6 @@ export const ListUser = async (c: any) => {
 export const register = async (c: any) => {
     const { email, password } = await c.req.json();
     const hash = await Bun.password.hash(password);
-    console.log("Slaut")
     try {
         return await prisma.user.create({
             data: {
